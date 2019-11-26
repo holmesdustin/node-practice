@@ -1,6 +1,7 @@
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
+const nodeFetch = require('node-fetch');
 
 const express = require('express');
 var app = express();
@@ -12,8 +13,21 @@ app.use(express.static('public')); //Express serves images, CSS files, and JavaS
 app.use(bodyParser.urlencoded({encoded: true}));
 
 app.get('/', function(req, res){
-    res.render('index');
+    let url = 'https://xkcd.com/info.0.json';
+    let img;
+    nodeFetch(url)
+    .then(resp => resp.json())
+    .then(data => {
+        img = data.img;
+        res.render('index', {img:img});
+    })
+    .catch(err => {
+        console.log(err);
+        res.render('index');
+    });
+    
 });
+
 
 http.createServer(app).listen(port, function(){
 
