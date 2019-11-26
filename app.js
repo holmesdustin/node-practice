@@ -1,9 +1,10 @@
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
+
 const express = require('express');
 var app = express();
-var port = process.env.PORT | 3000;
+var port = process.env.PORT || 3000;
 
 app.set('views', path.join(__dirname, "htmls"));
 app.set('view engine', 'ejs');
