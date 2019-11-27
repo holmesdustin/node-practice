@@ -1,16 +1,16 @@
-var http = require('http');
-var path = require('path');
-var bodyParser = require('body-parser');
+const http = require('http');
+const path = require('path');
+const bodyParser = require('body-parser');
 const nodeFetch = require('node-fetch');
 
 const express = require('express');
-var app = express();
-var port = process.env.PORT || 3000;
+let app = express();
+const port = process.env.PORT || 3000;
 
 app.set('views', path.join(__dirname, "htmls"));
 app.set('view engine', 'ejs');
 app.use(express.static('public')); //Express serves images, CSS files, and JavaScript files in a directory named public
-app.use(bodyParser.urlencoded({encoded: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){
     let url = 'https://xkcd.com/info.0.json';
