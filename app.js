@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public')); //Express serves images, CSS files, and JavaScript files in a directory named public
 app.use(bodyParser.urlencoded({extended: true}));
 
+// New branch testing
 app.get('/', function(req, res){
     let url = 'https://xkcd.com/info.0.json';
     let img;
